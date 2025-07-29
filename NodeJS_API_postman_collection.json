@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "c18a3831-c491-4c2c-9c65-a2a2af7689fd",
+		"name": "Codetentacles Node.js API",
+		"description": "Postman collection for admin/seller/product APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9973363",
+		"_collection_link": "https://red-water-769599.postman.co/workspace/My-Workspace~01a94251-65d6-40a4-8b5a-d1c90b32f1d1/collection/9973363-c18a3831-c491-4c2c-9c65-a2a2af7689fd?action=share&source=collection_link&creator=9973363"
+	},
+	"item": [
+		{
+			"name": "Admin Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"email\": \"admin@example.com\", \"password\": \"123456\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/admin/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"admin",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Seller",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUzNzMzNTQ0fQ.iAzW6FxC78BJ49ghZR2PgSvXUCyLDva8G2PLyTnJ9QE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{admin_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"test\",\n  \"email\": \"test1@example.com\",\n  \"mobile\": \"8888888888\",\n  \"country\": \"India\",\n  \"state\": \"Maharashtra\",\n  \"skills\": \"chemist,shop\",\n  \"password\": \"654321\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/admin/create-seller",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"admin",
+						"create-seller"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listing Sellers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/admin/sellers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"admin",
+						"sellers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Seller Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"email\": \"john@example.com\", \"password\": \"123456\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{seller_token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Mouse",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Gaming Mouse",
+							"type": "text"
+						},
+						{
+							"key": "brands",
+							"value": "[{\"name\":\"Dell\",\"detail\":\"Gaming\",\"price\":1200},{\"name\":\"HP\",\"detail\":\"Office\",\"price\":1500}]",
+							"type": "text"
+						},
+						{
+							"key": "images",
+							"type": "file",
+							"src": "dell.jpg"
+						},
+						{
+							"key": "images",
+							"type": "file",
+							"src": "hp.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Products",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{seller_token}}"
+					}
+				],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{seller_token}}"
+					}
+				],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	]
+}
